@@ -31,6 +31,7 @@
             padding: 10px 0;
             overflow-x: hidden;
             color: var(--text-color);
+            transition: background 0.5s ease;
         }
         
         @keyframes gradient {
@@ -58,7 +59,7 @@
             position: relative;
             overflow: hidden;
             transform: translateY(0);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transition: all 0.5s ease;
             animation: fadeIn 1s ease-out;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -356,6 +357,77 @@
             color: var(--secondary-color);
         }
         
+        /* Mode Toggle */
+        .mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mode-toggle:hover {
+            transform: rotate(30deg);
+            color: var(--secondary-color);
+        }
+        
+        /* Light Mode Styles */
+        .light-mode {
+            background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+            color: #333;
+        }
+        
+        .light-mode .card-container {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .light-mode .profile-img {
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .light-mode .profile-img-container:hover .profile-img {
+            border-color: white;
+        }
+        
+        .light-mode .bio {
+            color: #6c757d;
+        }
+        
+        .light-mode .btn-web {
+            background: #212529;
+        }
+        
+        .light-mode .btn-github {
+            background: #24292e;
+        }
+        
+        .light-mode .tech-icon {
+            color: #6c757d;
+        }
+        
+        .light-mode .tech-icon:hover {
+            color: var(--primary-color);
+        }
+        
+        .light-mode .footer {
+            color: #6c757d;
+        }
+        
+        .light-mode .mode-toggle {
+            color: #6c757d;
+        }
+        
+        .light-mode .mode-toggle:hover {
+            color: var(--primary-color);
+        }
+        
         @media (max-width: 576px) {
             body {
                 padding: 0;
@@ -416,6 +488,12 @@
                 margin-top: 15px;
                 font-size: 12px;
             }
+            
+            .mode-toggle {
+                top: 15px;
+                right: 15px;
+                font-size: 18px;
+            }
         }
         
         /* For very small screens */
@@ -448,10 +526,20 @@
                 padding: 9px 12px;
                 margin-bottom: 8px;
             }
+            
+            .mode-toggle {
+                top: 10px;
+                right: 10px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="mode-toggle" id="modeToggle">
+        <i class="bi bi-sun-fill"></i>
+    </button>
+    
     <div class="card-container animate__animated animate__fadeIn">
         <div class="geometric-shapes">
             <div class="shape shape-1"></div>
@@ -512,6 +600,25 @@
                     link.style.opacity = '1';
                     link.style.transform = 'translateX(0)';
                 }, 200 * (index + 1));
+            });
+            
+            // Mode toggle
+            const modeToggle = document.getElementById('modeToggle');
+            const body = document.body;
+            const icon = modeToggle.querySelector('i');
+            
+            // Start in dark mode by default
+            
+            modeToggle.addEventListener('click', () => {
+                body.classList.toggle('light-mode');
+                
+                if (body.classList.contains('light-mode')) {
+                    icon.classList.remove('bi-sun-fill');
+                    icon.classList.add('bi-moon-fill');
+                } else {
+                    icon.classList.remove('bi-moon-fill');
+                    icon.classList.add('bi-sun-fill');
+                }
             });
         });
     </script>
