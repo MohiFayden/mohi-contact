@@ -6,72 +6,494 @@
     <title>Mohi's Contact</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #ff7e5f;
         }
 
-        .container {
-            max-width: 400px;
-            margin-top: 50px;
+        body {
+            background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .card-container {
+            max-width: 450px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 40px 30px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .card-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .geometric-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatAnimation 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 50%;
+        }
+        
+        .shape-2 {
+            bottom: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        .shape-3 {
+            top: 50%;
+            right: -30px;
+            width: 70px;
+            height: 70px;
+            background: var(--accent-color);
+            border-radius: 30% 70% 50% 50% / 50%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .profile-header {
+            position: relative;
+            z-index: 1;
             text-align: center;
         }
 
-        .btn-row {
-            margin-bottom: 10px;
-            padding: 12px;
-            font-size: 16px;
-            width: 100%;
-            text-align: left;
+        .profile-img-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 25px;
         }
 
-        .btn-row i {
-            margin-right: 10px;
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+        
+        .profile-img-container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.3;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translateX(-50%) scale(0.95);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(-50%) scale(0.95);
+                opacity: 0.5;
+            }
         }
 
         .name {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 5px;
+            background: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .name::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .card-container:hover .name::after {
+            width: 100%;
         }
 
         .bio {
             font-size: 16px;
             color: #6c757d;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-weight: 300;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
+        .social-links {
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+        }
+
+        .btn-contact {
             margin-bottom: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            width: 100%;
+            text-align: left;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .btn-contact:nth-child(1) { animation-delay: 0.2s; }
+        .btn-contact:nth-child(2) { animation-delay: 0.4s; }
+        .btn-contact:nth-child(3) { animation-delay: 0.6s; }
+        .btn-contact:nth-child(4) { animation-delay: 0.8s; }
+        .btn-contact:nth-child(5) { animation-delay: 1s; }
+        
+        .btn-contact::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .btn-contact:hover::before {
+            left: 100%;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-linkedin {
+            background: #0a66c2;
+            color: white;
+        }
+
+        .btn-web {
+            background: #212529;
+            color: white;
+        }
+
+        .btn-email {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-github {
+            background: #24292e;
+            color: white;
+        }
+
+        .btn-youtube {
+            background: #ff0000;
+            color: white;
+        }
+
+        .btn-contact i {
+            margin-right: 15px;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-contact:hover i {
+            transform: scale(1.2);
+        }
+        
+        .btn-label {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #6c757d;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .tech-icon {
+            font-size: 18px;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: translateY(-3px);
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 576px) {
+            .card-container {
+                padding: 30px 20px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-img-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .profile-img-container::before {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .name {
+                font-size: 28px;
+            }
+        }
+        
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: transparent;
+            border: none;
+            color: #6c757d;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: rotate(30deg);
+            color: var(--primary-color);
+        }
+        
+        .dark-mode {
+            background: linear-gradient(-45deg, #2b5876, #4e4376, #2b5876, #4e4376);
+            background-size: 400% 400%;
+        }
+        
+        .dark-mode .card-container {
+            background: rgba(33, 37, 41, 0.85);
+            color: #f8f9fa;
+        }
+        
+        .dark-mode .bio,
+        .dark-mode .footer {
+            color: #adb5bd;
+        }
+        
+        .dark-mode .tech-icon {
+            color: #adb5bd;
+        }
+        
+        .dark-mode .dark-mode-toggle {
+            color: #f8f9fa;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="assets/img/profile.jpg" alt="Profile Image" class="profile-img">
-        <div class="name">Mohi</div>
-        <div class="bio">Software Engineer | Mobile & AI Enthusiast</div>
-
-        <a href="https://www.linkedin.com/in/mohammadfeyzian" target="_blank" class="btn btn-primary btn-row">
-            <i class="bi bi-linkedin"></i>LinkedIn
-        </a>
-        <a href="https://www.mohifeyzian.com/" target="_blank" class="btn btn-dark btn-row">
-            <i class="bi bi-globe"></i>Website
-        </a>
-        <a href="mailto:mohammad.feyzian@gmail.com" class="btn btn-secondary btn-row">
-            <i class="bi bi-envelope-fill"></i>Email
-        </a>
-        <a href="https://github.com/MohiFayden" target="_blank" class="btn btn-dark btn-row">
-            <i class="bi bi-github"></i>GitHub
-        </a>
-        <a href="https://www.youtube.com/@MohiFayden" target="_blank" class="btn btn-danger btn-row">
-            <i class="bi bi-youtube"></i>YouTube
-        </a>
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="bi bi-moon-fill"></i>
+    </button>
+    
+    <div class="card-container animate__animated animate__fadeIn">
+        <div class="geometric-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <div class="profile-header">
+            <div class="profile-img-container">
+                <img src="assets/img/profile.jpg" alt="Profile Image" class="profile-img">
+            </div>
+            <h1 class="name">Mohammad Feyzian</h1>
+            <p class="bio">Software Engineer | Mobile & AI Enthusiast</p>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/mohammadfeyzian" target="_blank" class="btn btn-contact btn-linkedin">
+                <i class="bi bi-linkedin"></i>
+                <span class="btn-label">LinkedIn</span>
+            </a>
+            <a href="https://www.mohifeyzian.com/" target="_blank" class="btn btn-contact btn-web">
+                <i class="bi bi-globe"></i>
+                <span class="btn-label">Website</span>
+            </a>
+            <a href="mailto:mohammad.feyzian@gmail.com" class="btn btn-contact btn-email">
+                <i class="bi bi-envelope-fill"></i>
+                <span class="btn-label">Email Me</span>
+            </a>
+            <a href="https://github.com/MohiFayden" target="_blank" class="btn btn-contact btn-github">
+                <i class="bi bi-github"></i>
+                <span class="btn-label">GitHub</span>
+            </a>
+            <a href="https://www.youtube.com/@MohiFayden" target="_blank" class="btn btn-contact btn-youtube">
+                <i class="bi bi-youtube"></i>
+                <span class="btn-label">YouTube</span>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <div class="tech-stack">
+                <i class="bi bi-code-slash tech-icon" title="Software Development"></i>
+                <i class="bi bi-phone tech-icon" title="Mobile Development"></i>
+                <i class="bi bi-cpu tech-icon" title="AI & Machine Learning"></i>
+                <i class="bi bi-braces tech-icon" title="Frontend Development"></i>
+                <i class="bi bi-database tech-icon" title="Backend Development"></i>
+            </div>
+            © 2023 Mohammad Feyzian | Let's Connect
+        </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Staggered animation for social buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const socialLinks = document.querySelectorAll('.btn-contact');
+            socialLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateX(0)';
+                }, 200 * (index + 1));
+            });
+            
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const icon = darkModeToggle.querySelector('i');
+            
+            darkModeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    icon.classList.remove('bi-moon-fill');
+                    icon.classList.add('bi-sun-fill');
+                } else {
+                    icon.classList.remove('bi-sun-fill');
+                    icon.classList.add('bi-moon-fill');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
