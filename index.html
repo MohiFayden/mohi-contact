@@ -10,13 +10,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
-            --primary-color: #6a11cb;
-            --secondary-color: #2575fc;
+            --primary-color: #8a2be2;
+            --secondary-color: #38b6ff;
             --accent-color: #ff7e5f;
+            --dark-bg: #121212;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
         }
 
         body {
-            background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+            background: linear-gradient(-45deg, #2b2b2b, #1a1a2e, #16213e, #0f172a);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             font-family: 'Poppins', sans-serif;
@@ -24,8 +28,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 0;
+            padding: 10px 0;
             overflow-x: hidden;
+            color: var(--text-color);
         }
         
         @keyframes gradient {
@@ -42,24 +47,26 @@
         
         .card-container {
             max-width: 450px;
-            width: 90%;
-            background: rgba(255, 255, 255, 0.9);
+            width: 92%;
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 30px 25px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
             transform: translateY(0);
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             animation: fadeIn 1s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .card-container:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         @keyframes fadeIn {
@@ -85,7 +92,7 @@
         
         .shape {
             position: absolute;
-            opacity: 0.1;
+            opacity: 0.15;
             animation: floatAnimation 6s ease-in-out infinite;
         }
         
@@ -134,18 +141,18 @@
 
         .profile-img-container {
             position: relative;
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 25px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
         }
 
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.4s ease;
             position: relative;
             z-index: 2;
@@ -153,6 +160,7 @@
         
         .profile-img-container:hover .profile-img {
             transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         
         .profile-img-container::before {
@@ -161,11 +169,11 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            opacity: 0.3;
+            opacity: 0.4;
             z-index: 1;
             animation: pulse 2s infinite;
         }
@@ -186,14 +194,15 @@
         }
 
         .name {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             background: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
             display: inline-block;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .name::after {
@@ -212,22 +221,22 @@
         }
 
         .bio {
-            font-size: 16px;
-            color: #6c757d;
-            margin-bottom: 30px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             font-weight: 300;
         }
 
         .social-links {
             position: relative;
             z-index: 1;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .btn-contact {
-            margin-bottom: 15px;
-            padding: 12px 20px;
-            font-size: 16px;
+            margin-bottom: 12px;
+            padding: 12px 16px;
+            font-size: 15px;
             width: 100%;
             text-align: left;
             border-radius: 12px;
@@ -272,7 +281,7 @@
         
         .btn-contact:hover {
             transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .btn-linkedin {
@@ -281,8 +290,9 @@
         }
 
         .btn-web {
-            background: #212529;
+            background: #383857;
             color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-email {
@@ -291,8 +301,9 @@
         }
 
         .btn-github {
-            background: #24292e;
+            background: #333333;
             color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-youtube {
@@ -313,13 +324,15 @@
         .btn-label {
             position: relative;
             z-index: 1;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         .footer {
             text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #6c757d;
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
             position: relative;
             z-index: 1;
         }
@@ -328,93 +341,117 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 12px;
             margin-bottom: 5px;
         }
         
         .tech-icon {
-            font-size: 18px;
-            color: #6c757d;
+            font-size: 16px;
+            color: var(--text-secondary);
             transition: all 0.3s ease;
         }
         
         .tech-icon:hover {
             transform: translateY(-3px);
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
         
         @media (max-width: 576px) {
+            body {
+                padding: 0;
+            }
+            
             .card-container {
-                padding: 30px 20px;
+                padding: 25px 18px;
+                width: 95%;
+                border-radius: 16px;
             }
             
             .profile-img {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .profile-img-container {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 15px;
+            }
+            
+            .profile-img-container::before {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .name {
+                font-size: 26px;
+            }
+            
+            .bio {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .btn-contact {
+                padding: 10px 16px;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+            
+            .btn-contact i {
+                font-size: 18px;
+                margin-right: 12px;
+            }
+            
+            .tech-stack {
+                gap: 12px;
+                margin-top: 10px;
+            }
+            
+            .tech-icon {
+                font-size: 15px;
+            }
+            
+            .footer {
+                margin-top: 15px;
+                font-size: 12px;
+            }
+        }
+        
+        /* For very small screens */
+        @media (max-width: 350px) {
+            .card-container {
+                padding: 20px 15px;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .profile-img-container {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 12px;
+            }
+            
+            .profile-img-container::before {
                 width: 120px;
                 height: 120px;
             }
             
-            .profile-img-container {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .profile-img-container::before {
-                width: 140px;
-                height: 140px;
-            }
-            
             .name {
-                font-size: 28px;
+                font-size: 24px;
             }
-        }
-        
-        .dark-mode-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 10;
-            background: transparent;
-            border: none;
-            color: #6c757d;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .dark-mode-toggle:hover {
-            transform: rotate(30deg);
-            color: var(--primary-color);
-        }
-        
-        .dark-mode {
-            background: linear-gradient(-45deg, #2b5876, #4e4376, #2b5876, #4e4376);
-            background-size: 400% 400%;
-        }
-        
-        .dark-mode .card-container {
-            background: rgba(33, 37, 41, 0.85);
-            color: #f8f9fa;
-        }
-        
-        .dark-mode .bio,
-        .dark-mode .footer {
-            color: #adb5bd;
-        }
-        
-        .dark-mode .tech-icon {
-            color: #adb5bd;
-        }
-        
-        .dark-mode .dark-mode-toggle {
-            color: #f8f9fa;
+            
+            .btn-contact {
+                padding: 9px 12px;
+                margin-bottom: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <button class="dark-mode-toggle" id="darkModeToggle">
-        <i class="bi bi-moon-fill"></i>
-    </button>
-    
     <div class="card-container animate__animated animate__fadeIn">
         <div class="geometric-shapes">
             <div class="shape shape-1"></div>
@@ -426,7 +463,7 @@
             <div class="profile-img-container">
                 <img src="assets/img/profile.jpg" alt="Profile Image" class="profile-img">
             </div>
-            <h1 class="name">Mohammad Feyzian</h1>
+            <h1 class="name">Mohi</h1>
             <p class="bio">Software Engineer | Mobile & AI Enthusiast</p>
         </div>
         
@@ -461,7 +498,7 @@
                 <i class="bi bi-braces tech-icon" title="Frontend Development"></i>
                 <i class="bi bi-database tech-icon" title="Backend Development"></i>
             </div>
-            © 2023 Mohammad Feyzian | Let's Connect
+            © 2025 Mohi | Let's Connect
         </div>
     </div>
     
@@ -475,23 +512,6 @@
                     link.style.opacity = '1';
                     link.style.transform = 'translateX(0)';
                 }, 200 * (index + 1));
-            });
-            
-            // Dark mode toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const body = document.body;
-            const icon = darkModeToggle.querySelector('i');
-            
-            darkModeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                
-                if (body.classList.contains('dark-mode')) {
-                    icon.classList.remove('bi-moon-fill');
-                    icon.classList.add('bi-sun-fill');
-                } else {
-                    icon.classList.remove('bi-sun-fill');
-                    icon.classList.add('bi-moon-fill');
-                }
             });
         });
     </script>
